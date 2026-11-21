@@ -1,0 +1,282 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Qiya Su, Electrical and Electronic Engineering undergraduate at UNNC. Research in computer vision, embedded systems, AI and robotics."><meta name="theme-color" content="#faf9f7"><title>AI-Guided Webpage | Qiya Su</title><script>(()=>{let p=null;try{p=localStorage.getItem('qiya-home-theme')}catch(e){}document.documentElement.dataset.theme=p==='light'||p==='dark'?p:matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';})();</script><style>
+
+:root { --canvas:#faf9f7; --text:#3d3b34; --accent:#a45a3c; --secondary:#716d63; --edge:#e2d9d0; --tint:#f1e9e2; --page-width:1120px; color-scheme:light; }
+:root[data-theme="dark"] { --canvas:#1b1b19; --text:#ddd8cf; --accent:#e5a184; --secondary:#b5afa4; --edge:#464039; --tint:#302922; color-scheme:dark; }
+@media(prefers-color-scheme:dark) { :root:not([data-theme]) { --canvas:#1b1b19; --text:#ddd8cf; --accent:#e5a184; --secondary:#b5afa4; --edge:#464039; --tint:#302922; color-scheme:dark; } }
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; scroll-padding-top:85px; }
+body { margin:0; background:var(--canvas); color:var(--text); font:15px/1.75 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif; overflow-wrap:anywhere; }
+a { color:var(--accent); text-decoration:none; text-underline-offset:4px; }
+a:hover { text-decoration:underline; }
+a:focus-visible,button:focus-visible,summary:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
+button { font:inherit; }
+p { margin:0 0 15px; }
+h1,h2,h3,h4 { color:var(--text); line-height:1.45; }
+.skip-link { position:fixed; top:-100px; left:10px; z-index:100; background:var(--canvas); padding:10px; }
+.skip-link:focus { top:10px; }
+.page-bar { position:fixed; inset:0 0 auto; height:58px; z-index:20; background:var(--canvas); border-bottom:1px solid var(--edge); }
+.bar-inner { max-width:var(--page-width); height:100%; margin:auto; padding-inline:40px; display:flex; align-items:center; justify-content:space-between; }
+.bar-home a { color:var(--text); font-size:16px; font-weight:600; }
+.bar-actions { display:flex; align-items:center; gap:23px; }
+.bar-link { font-size:12px; }
+#themeToggle { display:inline-flex; align-items:center; justify-content:center; border:0; background:transparent; color:var(--text); width:38px; height:38px; padding:8px; border-radius:50%; cursor:pointer; }
+#themeToggle:hover { background:var(--tint); color:var(--accent); }
+#themeToggle[hidden] { display:none; }
+#themeToggle svg { flex-shrink:0; }
+#themeToggle .theme-sun { display:none; }
+[data-theme="dark"] #themeToggle .theme-moon { display:none; }
+[data-theme="dark"] #themeToggle .theme-sun { display:block; }
+.home-layout { max-width:var(--page-width); margin:auto; padding:104px 40px 0; display:grid; grid-template-columns:244px minmax(0,1fr); column-gap:82px; align-items:start; }
+.profile-rail { position:sticky; top:96px; max-height:calc(100dvh - 120px); overflow-y:auto; scrollbar-width:thin; text-align:center; }
+.profile-photo { width:132px; height:132px; margin:0 auto 22px; border:1px solid var(--edge); border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; background:var(--tint); }
+.profile-photo span { color:var(--accent); font-size:37px; font-weight:300; letter-spacing:-2px; }
+.profile-photo small { font-size:9px; color:var(--secondary); margin-top:4px; }
+.profile-name { font-size:27px; line-height:1.25; margin:0 0 10px; letter-spacing:-.5px; }
+.profile-email { font:11px/1.8 ui-monospace,Consolas,monospace; margin-bottom:15px; }
+.profile-role { font-size:12px; line-height:1.8; color:var(--secondary); margin:0 auto 17px; max-width:28ch; }
+.profile-links { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:8px 15px; font-size:12px; }
+.unavailable-link { color:var(--secondary); font-size:11px; }
+.profile-focus { font-size:11px; color:var(--secondary); margin:20px 0 0; line-height:1.9; }
+.section-links { display:grid; gap:4px; text-align:left; margin:23px auto 0; max-width:198px; padding:16px 0 0 15px; border-left:1px solid var(--edge); }
+.section-links a { color:var(--secondary); font-size:12px; padding:3px 0; position:relative; }
+.section-links a[aria-current="location"] { color:var(--accent); }
+.section-links a[aria-current="location"]::before { content:""; position:absolute; top:11px; left:-18px; width:5px; height:5px; background:var(--accent); border-radius:50%; }
+.home-content { min-width:0; }
+.academic-section { margin-bottom:38px; scroll-margin-top:83px; }
+.academic-heading { display:inline-flex; align-items:baseline; gap:10px; margin:0 0 18px; padding-bottom:8px; border-bottom:1px solid var(--edge); font-size:20px; color:var(--accent); font-weight:600; letter-spacing:-.25px; }
+.chapter-number { color:var(--secondary); font:10px ui-monospace,Consolas,monospace; letter-spacing:.3px; }
+#about .academic-body { font-size:15px; line-height:1.8; }
+.snapshot-digest { border-top:1px solid var(--edge); border-bottom:1px solid var(--edge); padding:4px 0; }
+.snapshot-digest>div { display:grid; grid-template-columns:143px minmax(0,1fr); gap:18px; padding:10px 0; }
+.snapshot-digest a { font-size:12px; font-weight:500; }
+.snapshot-digest p { font-size:12px; color:var(--secondary); line-height:1.75; margin:0; }
+.snapshot-digest strong { font-weight:600; color:var(--text); }
+.affiliation-row { display:flex; align-items:flex-start; gap:16px; }
+.affiliation-code { display:grid; place-items:center; width:44px; height:44px; flex-shrink:0; border:1px solid var(--edge); border-radius:5px; font-size:9px; font-weight:600; color:var(--accent); background:transparent; }
+.affiliation-body { flex:1; min-width:0; }
+.affiliation-body>h3 { font-size:15px; font-weight:600; margin:0 0 4px; }
+.affiliation-body>.affiliation-line { color:var(--secondary); font-size:12px; margin:0 0 2px; }
+.period-label { color:var(--accent); font-size:12px; font-weight:400; margin:0 0 8px; }
+.research-row { position:relative; margin-left:14px; padding:0 0 26px 12px; scroll-margin-top:88px; }
+.research-row::before { content:""; position:absolute; left:-10px; top:0; bottom:0; width:1px; background:var(--edge); }
+.research-row:last-child { padding-bottom:0; }
+.research-row:last-child::before { bottom:70%; }
+.research-row::after { content:""; position:absolute; left:-13px; top:15px; width:7px; height:7px; border:1px solid var(--canvas); border-radius:50%; background:var(--accent); }
+.research-summary,.project-summary { font-size:13px; line-height:1.8; margin:7px 0 10px; }
+.research-row h3,.project-entry>h3 { transition:color 150ms ease; }
+.research-row:hover h3,.project-entry:hover>h3 { color:var(--accent); }
+.record-details { margin-top:6px; font-size:13px; }
+.record-details>summary,.media-details>summary,.coursework-details>summary { width:fit-content; cursor:pointer; color:var(--accent); font-size:12px; padding:4px 0; text-underline-offset:4px; }
+.record-details>summary:hover,.media-details>summary:hover,.coursework-details>summary:hover { text-decoration:underline; }
+.detail-record { font-size:13px; line-height:1.85; margin-top:10px; }
+.detail-record article>h3,.detail-record .project-main>h3,.detail-record .project-index,.detail-record .eyebrow { display:none; }
+.detail-record .muted { color:var(--secondary); font-size:11px; line-height:1.8; padding:0; margin:10px 0 14px; }
+.detail-record h4 { margin:15px 0 7px; font-size:12px; font-weight:600; }
+.detail-record p { margin-bottom:12px; }
+.tags { display:flex; flex-wrap:wrap; gap:5px 13px; color:var(--secondary); font:10px/1.8 ui-monospace,Consolas,monospace; margin:12px 0; }
+.project-entry { margin:0; padding:18px 0; border-top:1px solid var(--edge); scroll-margin-top:88px; }
+.project-entry:first-child { padding-top:0; border:0; }
+.project-entry>h3 { font-size:15px; margin:0 0 4px; line-height:1.5; }
+.project-entry>.period-label { font-size:11px; margin-bottom:6px; }
+.project-entry .detail-record { margin-top:10px; }
+.media-details { margin-top:5px; }
+.media-details>summary { color:var(--secondary); font-size:11px; }
+.media-details>summary span { font-size:10px; margin-left:6px; }
+.research-photo { width:100%; max-width:440px; margin:12px 0 18px; }
+.research-photo-placeholder { aspect-ratio:3/2; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:18px; border:1px dashed var(--edge); border-radius:4px; background:var(--tint); text-align:center; }
+.research-photo-placeholder span { font-size:12px; }
+.research-photo-placeholder small { color:var(--secondary); font-size:9px; letter-spacing:.3px; }
+.research-photo img { display:block; width:100%; height:auto; border-radius:4px; border:1px solid var(--edge); }
+.research-photo figcaption { font-size:10px; color:var(--secondary); line-height:1.7; margin-top:7px; }
+.education-entry h3 { font-size:15px; margin:0 0 5px; }
+.education-entry .institution { font-size:13px; margin:0 0 5px; }
+.education-entry .date { font-size:12px; color:var(--accent); margin:0 0 9px; }
+.coursework-details { margin-top:8px; }
+.coursework { padding-left:18px; margin:10px 0 0; font-size:12px; color:var(--secondary); }
+.coursework li { margin-bottom:5px; }
+.skills-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px 26px; }
+.skills-grid h3 { font-size:12px; margin:0 0 6px; font-weight:600; }
+.skills-grid p { color:var(--secondary); font-size:12px; margin:0; }
+#competition h3 { font-size:14px; margin:0 0 6px; }
+#competition .eyebrow { color:var(--accent); font-size:12px; }
+#competition p { font-size:13px; }
+.contact-grid { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(0,1fr); gap:18px; }
+.contact-label { color:var(--secondary); font-size:11px; }
+.contact-grid p { font-size:13px; margin:4px 0 0; }
+.cv-placeholder { color:var(--secondary); font-size:11px; }
+.home-footer { grid-column:2; padding:0 0 32px; color:var(--secondary); font-size:11px; }
+.home-footer p { border-top:1px solid var(--edge); padding-top:17px; margin:0; }
+.footer-mark { display:inline-block; color:var(--accent); font-size:10px; font-weight:600; margin-right:8px; }
+.footer-note { display:block; margin:5px 0 0 27px; font-size:11px; }
+@media(max-width:1080px) { .home-layout { grid-template-columns:210px minmax(0,1fr); gap:45px; padding:95px 28px 0; } .bar-inner { padding-inline:28px; } .profile-photo { width:115px; height:115px; } .section-links { max-width:180px; } }
+@media(max-width:760px) { .home-layout { display:block; padding:87px 22px 0; max-width:700px; } .profile-rail { position:static; max-height:none; overflow:visible; text-align:left; } .profile-summary { display:grid; grid-template-columns:95px minmax(0,1fr); gap:0 20px; } .profile-photo { width:95px; height:95px; grid-column:1; grid-row:1 / span 4; margin:0; } .profile-photo span { font-size:30px; } .profile-photo small { font-size:8px; } .profile-name { grid-column:2; font-size:26px; margin-bottom:5px; } .profile-email { grid-column:2; font-size:10px; margin:0 0 8px; } .profile-role { grid-column:2; margin:0 0 9px; max-width:none; font-size:11px; } .profile-links { grid-column:2; justify-content:flex-start; gap:7px 12px; font-size:11px; } .profile-focus { grid-column:1 / -1; font-size:11px; margin:20px 0 0; }  .section-links { grid-column:1 / -1; display:flex; flex-wrap:wrap; gap:4px 16px; max-width:none; padding:12px 0; margin:14px 0 0; border-left:0; border-top:1px solid var(--edge); border-bottom:1px solid var(--edge); } .section-links a { font-size:11px; } .section-links a[aria-current]::before { display:none; } .home-content { padding-top:29px; } .bar-inner { padding-inline:22px; } .academic-section { margin-bottom:30px; } .academic-heading { font-size:19px; } .home-footer { padding-bottom:25px; } }
+@media(max-width:420px) { .home-layout { padding-inline:18px; } .bar-inner { padding-inline:18px; } .bar-link { display:none; } .profile-summary { grid-template-columns:78px minmax(0,1fr); gap:0 14px; } .profile-photo { width:78px; height:78px; } .profile-photo small { font-size:7px; } .profile-name { font-size:24px; } .profile-links { grid-column:1 / -1; margin-top:13px; } .snapshot-digest>div { grid-template-columns:1fr; gap:3px; } .skills-grid,.contact-grid { grid-template-columns:1fr; gap:17px; } .affiliation-code { width:37px; height:37px; font-size:8px; } .affiliation-row { gap:11px; } .research-row { margin-left:10px; padding-left:9px; } #about .academic-body { font-size:14px; } .profile-focus { margin-top:14px; } }
+@media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*:before,*:after { transition:none!important; animation:none!important; } }
+
+@media(max-width:760px) {
+ .profile-summary { display:block; }
+ .profile-name,.profile-email,.profile-role,.profile-links { grid-column:auto; }
+ .profile-role { margin:0 0 12px; }
+ .profile-links { margin-top:8px; }
+ .profile-focus { margin-top:17px; }
+}
+
+/* Reading hierarchy: consistent baselines, visible contributions, quiet metadata. */
+.academic-section,.research-row,.project-entry { scroll-margin-top:0; }
+.home-layout { column-gap:60px; }
+.profile-name { font-size:29px; }
+.profile-email,.profile-focus { font-size:12px; }
+.profile-role { font-size:13px; }
+.academic-section { margin-bottom:46px; }
+.academic-heading { margin-bottom:20px; font-size:21px; }
+.chapter-number { font-size:11px; }
+.academic-body { max-width:75ch; }
+.affiliation-body>h3,.project-entry>h3 { font-size:16px; line-height:1.5; }
+.affiliation-body>.affiliation-line { font-size:12px; }
+.research-row { margin-left:6px; padding:0 0 28px 15px; }
+.research-row::before { left:0; }
+.research-row::after { left:-3px; }
+.research-row .affiliation-row { display:block; }
+.research-summary,.project-summary { font-size:14px; line-height:1.8; margin:8px 0 10px; }
+.period-label,.project-entry>.period-label { font-size:12px; margin:5px 0 8px; }
+.detail-record { font-size:14px; line-height:1.8; max-width:72ch; }
+.detail-record .muted { font-size:12px; }
+.record-details>summary,.coursework-details>summary { font-size:12px; padding:5px 0; }
+.project-entry { padding:24px 0; }
+.project-entry:first-child { padding-top:0; }
+.project-highlight { font-size:14px; line-height:1.8; margin:10px 0 12px; }
+.project-highlight>span { display:inline-block; color:var(--accent); font-size:12px; font-weight:600; margin-right:6px; }
+.project-entry>.tags { font-size:11px; line-height:1.8; margin:10px 0 11px; color:var(--secondary); }
+.media-details { margin-top:17px; padding-top:9px; border-top:1px solid var(--edge); }
+.media-details>summary { font-size:12px; }
+.media-details>summary span { font-size:11px; }
+.research-photo figcaption { font-size:12px; }
+.research-photo-placeholder small { font-size:11px; }
+.education-entry h3 { font-size:16px; }
+.education-entry .institution { font-size:14px; }
+.coursework { font-size:13px; line-height:1.8; }
+.skills-grid h3 { font-size:14px; }
+.skills-grid p,#competition p { font-size:14px; }
+#competition h3 { font-size:16px; }
+.contact-label { font-size:12px; }
+.contact-grid p { font-size:14px; }
+@media(max-width:1080px) { .home-layout { column-gap:38px; } }
+@media(max-width:760px) { .academic-section { margin-bottom:38px; } .academic-heading { font-size:20px; } .research-row { margin-left:4px; padding-left:15px; } }
+@media(prefers-reduced-motion:reduce) { * { transition:none!important; } }
+
+.research-narrative>.detail-record { margin-top:10px; }
+.research-narrative .media-details { margin-top:12px; }
+
+.integrated-projects { margin-top:28px; }
+.integrated-projects>.project-entry:first-child { border-top:1px solid var(--edge); padding-top:24px; }
+
+/* One consistent presentation for every research and engineering record. */
+.portfolio-entry { padding:25px 0; border-top:1px solid var(--edge); scroll-margin-top:0; }
+.portfolio-entry:first-child { padding-top:0; border-top:0; }
+.portfolio-entry>h3 { margin:0 0 5px; font-size:16px; line-height:1.5; font-weight:600; transition:color 150ms ease; }
+.portfolio-entry:hover>h3 { color:var(--accent); }
+.entry-date { margin:0 0 12px; color:var(--accent); font-size:12px; line-height:1.7; }
+.entry-description { font-size:14px; line-height:1.8; max-width:72ch; }
+.entry-description>p { margin:0 0 12px; }
+.entry-description .entry-note { color:var(--secondary); font-size:12px; margin:12px 0; }
+.entry-note strong { font-weight:600; }
+.portfolio-entry>.tags { font:11px/1.8 ui-monospace,Consolas,monospace; color:var(--secondary); margin:12px 0 9px; }
+.portfolio-entry>.media-details { border:0; padding:0; margin-top:5px; }
+@media(max-width:760px) { .portfolio-entry { padding:23px 0; } }
+
+.award-list { margin:0; padding-left:18px; font-size:14px; line-height:1.8; }
+.award-list li { margin-bottom:10px; padding-left:3px; }
+
+.github-profile-link { display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; color:var(--secondary); border-radius:50%; }
+.github-profile-link:hover { color:var(--accent); background:var(--tint); text-decoration:none; }
+.github-profile-link svg { display:block; }
+</style><style id="text-interaction-styles">
+/* Text-only interactions; existing layout and typography remain unchanged. */
+.profile-name,.academic-heading,.portfolio-entry>h3 {
+  text-decoration-line:underline;
+  text-decoration-color:transparent;
+  text-decoration-thickness:1px;
+  text-underline-offset:5px;
+  transition:color 180ms ease,text-decoration-color 180ms ease,transform 220ms ease;
+}
+.profile-name:hover,.academic-heading:hover,.portfolio-entry>h3:hover,
+.portfolio-entry:focus-within>h3 {
+  text-decoration-color:var(--accent);
+}
+.portfolio-entry:focus-within>h3 { color:var(--accent); }
+.section-links a,.profile-email a,.bar-link,.bar-home a {
+  text-underline-offset:4px;
+  text-decoration-thickness:1px;
+  transition:color 180ms ease,text-decoration-color 180ms ease;
+}
+@media(hover:hover) and (pointer:fine) {
+  .portfolio-entry>h3:hover { transform:translateX(3px); }
+  .academic-heading:hover .chapter-number { transform:translateX(-2px); }
+}
+.chapter-number { transition:transform 220ms ease; }
+@keyframes heading-arrival {
+  from { opacity:.35; transform:translateY(6px); }
+  to { opacity:1; transform:translateY(0); }
+}
+.academic-heading.text-arriving { animation:heading-arrival 480ms ease-out both; }
+@media(prefers-reduced-motion:reduce) {
+  .academic-heading.text-arriving { animation:none; }
+  .profile-name,.academic-heading,.portfolio-entry>h3,.chapter-number { transform:none!important; transition:none!important; }
+}
+</style><style id="landscape-project-images">
+.landscape-project-photo { position:relative; width:100%; overflow:hidden; border:1px solid var(--edge); border-radius:4px; }
+.landscape-project-photo img { position:absolute; left:50%; top:50%; max-width:none; border:0; border-radius:0; transform:translate(-50%,-50%) rotate(90deg); }
+</style><style id="research-gallery-layout">
+#experience>.academic-body { max-width:none; }
+.project-gallery-entry { display:grid; grid-template-columns:190px minmax(0,1fr); gap:25px; align-items:start; padding:28px 0; }
+.project-gallery-entry>.research-photo { margin:3px 0 0; width:100%; max-width:100%!important; }
+.project-gallery-copy { min-width:0; }
+.project-gallery-copy>h3 { margin:0 0 5px; font-size:16px; line-height:1.5; font-weight:600; text-decoration:underline; text-decoration-color:transparent; text-decoration-thickness:1px; text-underline-offset:5px; transition:color 180ms ease,text-decoration-color 180ms ease; }
+.project-gallery-entry:hover .project-gallery-copy>h3,.project-gallery-entry:focus-within .project-gallery-copy>h3 { color:var(--accent); }
+.project-gallery-copy>h3:hover,.project-gallery-entry:focus-within .project-gallery-copy>h3 { text-decoration-color:var(--accent); }
+.project-gallery-copy>.tags { font:11px/1.8 ui-monospace,Consolas,monospace; color:var(--secondary); margin:12px 0 0; }
+.project-gallery-entry .entry-description { font-size:13px; line-height:1.8; }
+.project-gallery-entry .entry-date { margin-bottom:10px; }
+.project-gallery-entry .research-photo figcaption { font-size:11px; line-height:1.6; }
+.project-image-link { display:block; border-radius:4px; text-decoration:none; }
+.project-image-link:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
+.project-gallery-entry .landscape-project-photo .project-image-link { position:absolute; inset:0; }
+@media(min-width:761px) and (max-width:1080px) { .project-gallery-entry { grid-template-columns:150px minmax(0,1fr); gap:18px; } }
+@media(max-width:760px) { .project-gallery-entry { grid-template-columns:180px minmax(0,1fr); gap:20px; } }
+@media(max-width:580px) { .project-gallery-entry { grid-template-columns:minmax(0,1fr); gap:17px; padding:25px 0; } .project-gallery-entry>.research-photo { max-width:360px!important; } .project-gallery-entry .entry-description { font-size:14px; } }
+</style></head><body class="academic-home"><a class="skip-link" href="#main">Skip to content</a><nav class="page-bar" aria-label="Main navigation"><div class="bar-inner"><div class="bar-home"><a href="#about">Home</a></div><div class="bar-actions"><a class="bar-link" href="#projects">Projects</a><button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch to dark theme" title="Switch to dark theme" hidden><svg class="theme-moon" viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.4 13.1A8.5 8.5 0 0 1 10.9 3.6 8.5 8.5 0 1 0 20.4 13.1Z"/></svg><svg class="theme-sun" viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button></div></div></nav><div class="home-layout"><header class="profile-rail"><div class="profile-summary"><h1 class="profile-name">Qiya Su</h1><p class="profile-email"><a href="mailto:ssyqs7@nottingham.edu.cn">ssyqs7@nottingham.edu.cn</a></p><p class="profile-role">Electrical &amp; Electronic Engineering<br>University of Nottingham Ningbo China</p><div class="profile-links"><a class="github-profile-link" href="https://github.com/Qiya225" target="_blank" rel="noopener noreferrer" aria-label="Qiya Su on GitHub (opens in a new tab)" title="GitHub"><svg viewBox="0 0 24 24" width="23" height="23" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2.23c-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.16 1.18A11 11 0 0 1 12 5.93c.98 0 1.96.13 2.88.39 2.2-1.49 3.16-1.18 3.16-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.25c0 .31.21.68.79.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg></a></div><p class="profile-focus">Embedded systems &middot; Electronic sensing<br>Signal processing &middot; Robotics</p><nav class="section-links" aria-label="Page sections"><a href="#about">About Me</a><a href="#education">Education</a><a href="#experience">Research &amp; Projects</a><a href="#competition">Awards</a><a href="#skills">Skills</a></nav></div></header><main class="home-content" id="main"><section class="academic-section is-visible" id="about"><h2 class="academic-heading"><span class="chapter-number" aria-hidden="true">01</span>About Me</h2><div class="academic-body"><p>I am an Electrical and Electronic Engineering undergraduate at the University of Nottingham Ningbo China (UNNC), with a particular interest in embedded hardware, sensing, and the integration of electronic systems with intelligent software.</p><p>My engineering work spans STM32-based Doppler radar sensing, signal conditioning and digital signal processing, Raspberry Pi robotic systems, and power converter design. I am interested in how circuits, sensors, embedded programming, and control come together to form practical engineering systems.</p></div></section><section class="academic-section is-visible" id="education"><h2 class="academic-heading"><span class="chapter-number" aria-hidden="true">02</span>Education</h2><div class="academic-body"><div class="affiliation-row"><img class="affiliation-code" src="assets/unnc-logo.jpg" alt="University of Nottingham crest" width="44" height="44" style="object-fit:cover;object-position:left;border:0"><div class="affiliation-body"><div class="education-entry"><h3>University of Nottingham Ningbo China (UNNC)</h3><p class="institution">Bachelor of Engineering in Electrical and Electronic Engineering</p><p class="date">September 2023 - July 2027 (expected)</p></div><details class="coursework-details"><summary>Relevant coursework</summary><ul class="coursework"><li>Design and Implementation of Engineering Software</li><li>Electronic Systems Group Design Project</li><li>Applied Electrical and Electronic Engineering: Construction Project</li><li>Electrical Energy Conditioning and Control</li><li>Electronic Processing and Communications</li><li>Introduction to Software Engineering and Programming</li><li>Modelling: Methods and Tools</li></ul></details></div></div></div></section><section class="academic-section is-visible" id="experience"><h2 class="academic-heading"><span class="chapter-number" aria-hidden="true">03</span>Research &amp; Projects</h2><div class="academic-body"><div class="portfolio-list" id="projects"><article class="portfolio-entry project-gallery-entry" id="project-robot"><figure class="research-photo"><a class="project-image-link" href="assets/images/projects/robotic-vehicle.jpg" target="_blank" rel="noopener" aria-label="View project image in a new tab"><img src="assets/images/projects/robotic-vehicle.jpg" alt="Robotic vehicle with a raised camera, exposed wiring, circuit boards, and four wheels." width="1706" height="1279" loading="lazy" decoding="async"></a></figure><div class="project-gallery-copy"><h3>Multi-Module Raspberry Pi Robotic Vehicle Design</h3><p class="entry-date">February - May 2025</p><div class="entry-description"><p>Designed a Raspberry Pi 3B robotic platform integrating computer vision, line following, ultrasonic ranging, servo control, LCD/LED/audio feedback, and UART communication.</p><p>Validated hardware modules and system-level task coordination through line following, visual cue detection, task triggering, distance sensing, autonomous stopping, and multimodal feedback.</p></div><div class="tags"><span>Raspberry Pi 3B</span><span>Computer vision</span><span>UART</span><span>Robotics</span></div></div></article><article class="portfolio-entry project-gallery-entry" id="research-mri"><figure class="research-photo"><a class="project-image-link" href="assets/images/projects/mri.jpg" target="_blank" rel="noopener" aria-label="View project image in a new tab"><img src="assets/images/projects/mri.jpg" alt="MRI slice and a three-dimensional segmentation reconstruction." width="1374" height="654" loading="lazy" decoding="async"></a></figure><div class="project-gallery-copy"><h3>Renal MRI Computational Analysis &amp; Radiomics</h3><p class="entry-date">September 2025 - present</p><div class="entry-description"><p>Built an automated renal MRI analysis pipeline in MATLAB and Python to standardize MRI volumes for downstream analysis.</p><p>Deployed and fine-tuned nnU-Net for kidney MRI semantic segmentation, covering data splitting, hyperparameter configuration, training, cross-validation, and mask post-processing.</p><p>Extracted radiomic features from segmented kidney regions to produce quantitative imaging biomarkers for subsequent statistical and clinical analysis.</p></div><div class="tags"><span>Python</span><span>MATLAB</span><span>nnU-Net</span><span>Radiomics</span></div></div></article><article class="portfolio-entry project-gallery-entry" id="project-radar"><figure class="research-photo"><div class="landscape-project-photo" style="aspect-ratio:2063/1377"><a class="project-image-link" href="assets/images/projects/stm32.jpg" target="_blank" rel="noopener" aria-label="View project image in a new tab"><img src="assets/images/projects/stm32.jpg" alt="Doppler radar prototype board with radar module and signal-conditioning components." width="1377" height="2063" loading="lazy" decoding="async" style="width:66.74745516%;height:149.81844590%"></a></div></figure><div class="project-gallery-copy"><h3>STM32-Based Doppler Radar Velocity Measurement</h3><p class="entry-date">October 2025 - January 2026</p><div class="entry-description"><p>Designed and validated a low-cost Doppler radar sensing front-end to condition weak or noisy IF signals for STM32 ADC acquisition and embedded velocity estimation.</p><p>Implemented DC-offset removal, windowing, FFT, frequency-band filtering, peak detection, and validity checks for robust Doppler frequency extraction.</p></div><div class="tags"><span>STM32</span><span>ADC</span><span>DSP</span><span>FFT</span></div></div></article><article class="portfolio-entry project-gallery-entry" id="research-lanes"><figure class="research-photo" style="max-width:277px"><a class="project-image-link" href="assets/images/projects/cone.jpg" target="_blank" rel="noopener" aria-label="View project image in a new tab"><img src="assets/images/projects/cone.jpg" alt="Night-time road scene with detected lane markings overlaid in green." width="277" height="156" loading="lazy" decoding="async"></a></figure><div class="project-gallery-copy"><h3>Enhancing Road Safety through IoT-Enabled Smart Traffic Cones</h3><p class="entry-date">January 2026 - present</p><div class="entry-description"><p>Curated approximately 300 highway-scene images from CurveLanes and wrote Python scripts to convert annotations into TuSimple format. Independently implemented, trained, and evaluated UFLD, RESA, and CLRNet in PyTorch.</p><p>Evaluated the models under low illumination, rain/fog, motion blur, and brightness changes. CLRNet retained more reliable lane detections, while the lighter UFLD architecture was better suited to deployment.</p><p>Adapted and deployed lane-detection models on the smart cone’s monocular camera for real-time detection. Ongoing work focuses on varied road conditions while keeping deployment practical.</p></div><div class="tags"><span>PyTorch</span><span>UFLD</span><span>RESA</span><span>CLRNet</span></div></div></article><article class="portfolio-entry project-gallery-entry" id="project-power"><figure class="research-photo"><a class="project-image-link" href="assets/images/projects/smps.svg" target="_blank" rel="noopener" aria-label="View project image in a new tab"><img src="assets/images/projects/smps.svg" alt="SMPS design circuit diagram." width="248" height="104" loading="lazy" decoding="async" style="background:#fff"></a></figure><div class="project-gallery-copy"><h3>SMPS Design</h3><p class="entry-date">February - May 2026</p><div class="entry-description"><p>Developed and benchmarked an LLM-assisted SMPS design workflow with seven deterministic engineering functions across 20 converter-design cases, covering component sizing, controller selection, and constraint classification.</p><p>Against an LLM-only baseline, the evaluated workflow eliminated observed run-to-run variation and reduced errors from up to around 90% to floating-point-level agreement with reference values.</p></div><div class="tags"><span>LLM-assisted design</span><span>SMPS</span><span>Engineering validation</span></div></div></article><article class="portfolio-entry project-gallery-entry" id="verilog-cpld"><figure class="research-photo"><div class="landscape-project-photo" style="aspect-ratio:1139/924"><a class="project-image-link" href="assets/images/projects/verilog.jpg" target="_blank" rel="noopener" aria-label="View project image in a new tab"><img src="assets/images/projects/verilog.jpg" alt="CPLD circuit board with two seven-segment displays and connection headers." width="924" height="1139" loading="lazy" decoding="async" style="width:81.12379280%;height:123.26839827%"></a></div></figure><div class="project-gallery-copy"><h3>Verilog &amp; CPLD Digital Display Design</h3><p class="entry-date">February - May 2026</p><div class="entry-description"><p>Digital logic design scope for the display subsystem of a Doppler radar speed detector, using Verilog HDL and a Xilinx XC2C64A CPLD.</p><p>The scope covers clock division, BCD-to-seven-segment decoding, display control, and STM32-CPLD serial communication. Xilinx ISE 14.7 supports the HDL simulation, synthesis, implementation, and device-programming workflow. The wider system context includes ADC/FFT processing and comparator-based frequency measurement, with results transferred to the display.</p><p class="entry-note">Individual implementation contributions and hardware/simulation test results: [to be added].</p></div><div class="tags"><span>Verilog HDL</span><span>XC2C64A CPLD</span><span>Xilinx ISE 14.7</span><span>Clock divider</span><span>Seven-segment display</span><span>Serial communication</span></div></div></article></div></div></section><section class="academic-section is-visible" id="competition"><h2 class="academic-heading"><span class="chapter-number" aria-hidden="true">04</span>Awards</h2><div class="academic-body"><ul class="award-list"><li>2025 Mathematical Contest in Modeling (MCM) &mdash; Meritorious Winner</li><li>2026 Nottingham Advantage Award</li></ul></div></section><section class="academic-section is-visible" id="skills"><h2 class="academic-heading"><span class="chapter-number" aria-hidden="true">05</span>Technical Skills</h2><div class="academic-body"><div class="skills-grid"><div><h3>Programming</h3><p>Python, C/C++, MATLAB, Verilog (HDL)</p></div><div><h3>Embedded Development</h3><p>Good knowledge of STM32CubeIDE, STM32 HAL, Keil, and MQTT.</p></div><div><h3>Circuit Design</h3><p>Experienced in using KiCad, LTspice, and PLECS.</p></div></div></div></section></main><footer class="home-footer"><p>&copy; <span id="year">2026</span> Qiya Su. All rights reserved.</p></footer></div><script>
+(()=>{
+ const button=document.querySelector('#themeToggle');const system=matchMedia('(prefers-color-scheme:dark)');let explicit=null;try{const saved=localStorage.getItem('qiya-home-theme');if(saved==='dark'||saved==='light')explicit=saved;}catch(e){}
+ const apply=value=>{document.documentElement.dataset.theme=value;const label=value==='dark'?'Switch to light theme':'Switch to dark theme';button.setAttribute('aria-label',label);button.title=label;document.querySelector('meta[name="theme-color"]').content=value==='dark'?'#1b1b19':'#faf9f7';};
+ apply(explicit||(system.matches?'dark':'light'));button.hidden=false;
+ button.addEventListener('click',()=>{explicit=document.documentElement.dataset.theme==='dark'?'light':'dark';apply(explicit);try{localStorage.setItem('qiya-home-theme',explicit);}catch(e){}});
+ system.addEventListener('change',e=>{if(!explicit)apply(e.matches?'dark':'light');});
+ document.querySelector('#year').textContent=new Date().getFullYear();
+ const links=[...document.querySelectorAll('.section-links a')],sections=[...document.querySelectorAll('main>section')];let scheduled=false;
+ const update=()=>{let current=sections[0];sections.forEach(s=>{if(s.getBoundingClientRect().top<150)current=s;});if(innerHeight+scrollY>=document.documentElement.scrollHeight-4)current=sections[sections.length-1];links.forEach(a=>{if(a.hash==='#'+current.id)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});scheduled=false;};
+ addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFrame(update);}},{passive:true});addEventListener('resize',update);document.querySelectorAll('details').forEach(d=>d.addEventListener('toggle',update));
+ const revealRecord=()=>{const record=document.getElementById(location.hash.slice(1));if(record&&record.matches('.portfolio-entry')){const details=record.querySelector('.record-details');if(details)details.open=true;}};
+ addEventListener('hashchange',revealRecord);
+ revealRecord();update();
+})();
+</script><script id="text-interaction-script">
+(()=>{
+  const motion=matchMedia('(prefers-reduced-motion: reduce)');
+  if(!('IntersectionObserver' in window))return;
+  const headings=[...document.querySelectorAll('.academic-heading')];
+  const observer=new IntersectionObserver(entries=>{
+    for(const entry of entries){
+      if(!entry.isIntersecting)continue;
+      if(!motion.matches)entry.target.classList.add('text-arriving');
+      observer.unobserve(entry.target);
+    }
+  },{threshold:.25});
+  headings.forEach(heading=>{
+    heading.addEventListener('animationend',()=>heading.classList.remove('text-arriving'));
+    observer.observe(heading);
+  });
+  motion.addEventListener('change',()=>{
+    if(motion.matches)headings.forEach(heading=>heading.classList.remove('text-arriving'));
+  });
+})();
+</script></body></html>
